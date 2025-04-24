@@ -15,6 +15,6 @@ jobs:
           token: NOT_NEEDED
           base: ""
           plugin_leetcode: yes
-          plugin_leetcode_user: ashiven
+          plugin_leetcode_user: antim_pal
           plugin_leetcode_sections: solved, skills, recent
           plugin_leetcode_limit_recent: 5
