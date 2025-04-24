@@ -1,0 +1,20 @@
+name: LeetCode
+on: 
+  schedule:
+    - cron: '30 8 * * *'
+  workflow_dispatch:
+  push: { branches: ["master", "main"] }
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: LeetCode
+        uses: lowlighter/metrics@latest
+        with:
+          filename: img/metrics.plugin.leetcode.svg
+          token: NOT_NEEDED
+          base: ""
+          plugin_leetcode: yes
+          plugin_leetcode_user: ashiven
+          plugin_leetcode_sections: solved, skills, recent
+          plugin_leetcode_limit_recent: 5
