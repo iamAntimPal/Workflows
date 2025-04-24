@@ -48,5 +48,6 @@ jobs:
               plugin_topics_mode: icons
               plugin_notable: yes
               plugin_discussions: yes
+              plugin_discussions_categories_limit: 8
 
 
