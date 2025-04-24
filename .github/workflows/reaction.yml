@@ -1,6 +1,6 @@
 # .github/workflows/metrics.yml
 
-name: Metrics
+name: reaction
 
 on:
   schedule:
