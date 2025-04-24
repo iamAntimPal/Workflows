@@ -17,18 +17,20 @@ jobs:
       - name: 🔍 Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🛠️ Install Docker and jq
+      - name: 🛠️ Install Docker and jq (via official script)
         run: |
           sudo apt-get update
-          sudo apt-get install -y docker.io jq
-          sudo systemctl enable docker
+          sudo apt-get install -y jq curl
+          curl -fsSL https://get.docker.com | sh
+          sudo usermod -aG docker $USER
           sudo systemctl start docker
+          sudo systemctl enable docker
 
-      - name: 📊 Generate LeetCode Metrics
+      - name: 📊 Generate LeetCode Metrics and upload to Gist
         uses: lowlighter/metrics@latest
         with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          filename: metrics.plugin.leetcode.svg
+          token: ${{ secrets.GIST }}  # Token with Gist scope
+          filename: leetcode.svg
           base: ""
           plugin_leetcode: yes
           plugin_leetcode_user: antim_pal
