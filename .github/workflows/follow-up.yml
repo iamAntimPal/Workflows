@@ -6,11 +6,20 @@ on:
   # Lines below let you run workflow manually with each commit
   workflow_dispatch:
   push: { branches: ["master", "main", "metrics"] }
+
+permissions:
+  contents: read             # required for checkout and metadata
+  issues: write              # required for interacting with issues
+  pull-requests: write       # required for PR-based metrics
+  
 jobs:
-  # https://github.com/lowlighter/metrics/blob/master/source/plugins/followup/README.md
   follow-up-pr-metrics:
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io jq
       - uses: lowlighter/metrics@latest
         with:
           filename: assets/metrics.plugin.followup.svg
