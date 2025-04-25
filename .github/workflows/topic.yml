@@ -39,8 +39,6 @@ jobs:
           base: ""
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
-          template: repository
-          repo: TechInterviewMaster
           plugin_topics: yes
           plugin_topics_mode: icons
           plugin_topics_sort: activity
