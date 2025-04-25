@@ -1,5 +1,5 @@
 # .github/workflows/metrics.yml
-name: Skyline_Metrics
+name: Topics_Metrics
 on:
   # Daily at 16:00 UTC
   schedule:
@@ -30,15 +30,17 @@ jobs:
           sudo apt-get install -y jq
       
       # Skyline 
-      - name: 🐙Skyline
+      - name: 🐙Stared Topics
         if: ${{ success() || failure() }}
         uses: lowlighter/metrics@latest
         with:
-          filename: skylin.svg
+          filename: star_topic.svg
           token: ${{ secrets.METRICS_TOKEN }}
           base: ""
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
-          plugin_skyline: yes
-          plugin_skyline_quality: 1
+          plugin_topics: yes
+          plugin_topics_mode: icons
+          plugin_topics_sort: activity
+          plugin_topics_limit: 20
           config_timezone: Asia/Kolkata
