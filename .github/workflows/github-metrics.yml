@@ -169,6 +169,42 @@ jobs:
           plugin_leetcode_sections: solved, skills, recent
           config_timezone: Asia/Kolkata
 
+      # Contribution
+      - name: 🐙Contribution
+        if: ${{ success() || failure() }}
+        uses: lowlighter/metrics@latest
+        with:
+          filename: contribution.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          output_action: gist
+          committer_gist: ${{ secrets.WORKFLOW_GIST }}
+          plugin_contribution: yes
+          plugin_contribution_limit: 100
+          plugin_contribution_details: percentage
+          plugin_contribution_sections: base, repositories,
+          # skip any repos you don’t want included:
+          plugin_contribution_skipped: testing, The-Futurists_Manthan_Frontend
+          # limit the breakdown to top 10 repos:
+          plugin_contribution_repositories_limit: 50
+          config_timezone: Asia/Kolkata
+
+      # Topics
+      - name: 📊 Generate
+        if: ${{ success() || failure() }}
+        uses: lowlighter/metrics@latest
+        with:
+          filename: topics.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          output_action: gist
+          committer_gist: ${{ secrets.WORKFLOW_GIST }}
+          plugin_topics: yes
+          plugin_topics_limit: 10
+          plugin_topics_sort: star, activity
+          plugin_topics_mode: icons
+          config_timezone: Asia/Kolkata
+
       # 9️⃣ Commit & push all SVG updates to a PR
       - name: 🦑 Commit & Create PR
         uses: peter-evans/create-pull-request@v6
