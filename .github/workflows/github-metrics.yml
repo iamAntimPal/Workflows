@@ -39,6 +39,7 @@ jobs:
           base: ""
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
+          plugin_followup: yes
           plugin_followup_sections: repositories, user
           plugin_followup_indepth: yes
           plugin_followup_archived: no
@@ -113,9 +114,12 @@ jobs:
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
           plugin_discussions: yes
-          plugin_notable: yes
-          plugin_discussions_limit: 5
-          plugin_discussions_mode: icons
+          plugin_discussions_limit: 100
+          plugin_discussions_details: percentage
+          plugin_discussions_sections: most-discussed, recently-discussed
+          plugin_discussions_indepth: yes
+          plugin_discussions_indepth_limit: 10
+          plugin_discussions_indepth_mode: icons
           config_timezone: Asia/Kolkata
 
       # 8️⃣ **NEW** Reaction
