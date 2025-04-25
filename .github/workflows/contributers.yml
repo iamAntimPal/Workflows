@@ -1,5 +1,5 @@
 # .github/workflows/metrics.yml
-name: Github_Metrics
+name: Repo_Contributors_Metrics
 on:
   # Daily at 16:00 UTC
   schedule:
