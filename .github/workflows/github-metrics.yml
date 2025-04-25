@@ -179,13 +179,30 @@ jobs:
           base: ""
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
-          plugin_contribution: yes
+          plugin_contributors: yes
+          plugin_contributors_base: main
           plugin_contributors_head: main
           plugin_contributors_contributions: yes
-          plugin_contribution_limit: 10
-          plugin_contribution_sort: activity
-          plugin_contribution_mode: icons
           config_timezone: Asia/Kolkata
+      # Code
+      - name: 🐙Code
+        if: ${{ success() || failure() }}
+        uses: lowlighter/metrics@latest
+        with:
+          filename: code.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          output_action: gist
+          committer_gist: ${{ secrets.WORKFLOW_GIST }}
+          plugin_code: yes
+          plugin_code_language: yes
+          plugin_code_language_mode: icons
+          plugin_code_language_limit: 10
+          plugin_code_language_sort: star, activity
+          plugin_code_language_sort: star, activity
+          plugin_code_language_sort: star, activity
+          plugin_code_language_sort: star, activity
+          plugin
 
       # Topics
       - name: 📊 Generate
