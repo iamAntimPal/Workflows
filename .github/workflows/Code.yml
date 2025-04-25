@@ -1,0 +1,25 @@
+name: Python Snippet of the Day
+
+on:
+  pull_request:
+    branches:
+      - main            # ✅ Change this if your default branch is different
+  workflow_dispatch:     # Optional: for manual runs
+
+jobs:
+  generate-snippet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Generate Code Snippet Metrics
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.plugin.code.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_code: yes
+          plugin_code_languages: python, cpp
+          plugin_code_load: 400
