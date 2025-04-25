@@ -40,7 +40,7 @@ jobs:
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
           template: repository
-          repo: TechInterviewMaster, iamAntimPal
+          repo: TechInterviewMaster
           plugin_contributors: yes
           plugin_contributors_contributions: yes
           config_timezone: Asia/Kolkata
