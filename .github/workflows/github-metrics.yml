@@ -212,6 +212,24 @@ jobs:
           plugin_topics_limit: 10
           plugin_topics_sort: star, activity
           plugin_topics_mode: icons
+          config_timezone: Asia/Kolkata\
+
+      # Base
+      - name: base
+        if: ${{ success() || failure() }}
+        uses: lowlighter/metrics@latest
+        with:
+          filename: base.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          # Options
+          user: iamAntimPal
+          template: classic
+          base: header, activity, community, repositories, metadata
+          base_indepth: yes
+          base_hireable: yes
+          repositories_forks: yes
+          output_action: gist
+          committer_gist: ${{ secrets.WORKFLOW_GIST }}
           config_timezone: Asia/Kolkata
 
       # 9️⃣ Commit & push all SVG updates to a PR
