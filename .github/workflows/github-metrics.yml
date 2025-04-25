@@ -198,7 +198,8 @@ jobs:
           plugin_code: yes
           plugin_code_lines: 12
           plugin_code_visibility: public
-          plugin_code_languages: python, 
+          plugin_code_languages: python 
+
           
 
       # Topics
