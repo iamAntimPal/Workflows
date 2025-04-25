@@ -29,6 +29,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
+      # 3️⃣ Followup
+      - name: 🦑 Followup
+        if: ${{ success() || failure() }}
+        uses: lowlighter/metrics@latest
+        with:
+          filename: followup.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          output_action: gist
+          committer_gist: ${{ secrets.WORKFLOW_GIST }}
+          plugin_followup_sections: repositories, user
+          plugin_followup_indepth: yes
+          plugin_followup_archived: no
+
 
       # 9️⃣ Commit & push all SVG updates to a PR
       - name: 🦑 Commit & Create PR
