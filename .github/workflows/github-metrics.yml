@@ -180,13 +180,11 @@ jobs:
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
           plugin_contribution: yes
-          plugin_contribution_limit: 100
-          plugin_contribution_details: percentage
-          plugin_contribution_sections: base, repositories,
-          # skip any repos you don’t want included:
-          plugin_contribution_skipped: testing, The-Futurists_Manthan_Frontend
-          # limit the breakdown to top 10 repos:
-          plugin_contribution_repositories_limit: 50
+          plugin_contributors_head: main
+          plugin_contributors_contributions: yes
+          plugin_contribution_limit: 10
+          plugin_contribution_sort: activity
+          plugin_contribution_mode: icons
           config_timezone: Asia/Kolkata
 
       # Topics
