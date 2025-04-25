@@ -1,9 +1,12 @@
 # .github/workflows/metrics.yml
-name: FOLLOW_UP_METRICS
+name: Base
 on:
   # Daily at 16:00 UTC
   schedule:
+    - cron: "0 0 * * *"
+    - cron: "0 10 * * *"
     - cron: "0 16 * * *"
+    - cron: "0 22 * * *"
   # Manual trigger from the Actions tab
   workflow_dispatch:
 
@@ -29,34 +32,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq
 
-      # 3️⃣ Medias
-      - name: 🦑 Followup metircs
+      # 3️⃣ Followup
+      - name: 🦑 Followup
         if: ${{ success() || failure() }}
         uses: lowlighter/metrics@latest
         with:
           filename: followup.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          base: ""
+          base: user: iamAntimPal
+          template: classic
+          base: header, activity, community, repositories, metadata
+          base_indepth: yes
+          base_hireable: yes
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
-          plugin_followup: yes
-          plugin_followup_sections: repositories, user
-          plugin_followup_indepth: yes
-          plugin_followup_archived: no
-
-
-      # 4️⃣ Achievements
-      # 5️⃣ Sponsors
-      # 6️⃣ General
-      # 7️⃣ Splatoon
-      # 8️⃣ **NEW** Lines of Code Change
-      # 9️⃣ LeetCode 
-
-      # 9️⃣ Commit & push all SVG updates to a PR
-      - name: 🦑 Commit & Create PR
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          branch: metrics-update
-          title: "chore: update all metrics SVGs"
-          body: "Auto-generated metrics via lowlighter/metrics"
+          
