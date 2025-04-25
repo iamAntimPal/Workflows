@@ -1,0 +1,43 @@
+# .github/workflows/metrics.yml
+name: Skyline_Metrics
+on:
+  # Daily at 16:00 UTC
+  schedule:
+    - cron: "0 16 * * *"
+  # Manual trigger from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write     # to push updates / create PRs
+  actions: read       # to run actions
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout your profile repo
+      - name: 🦑 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # 2️⃣ Install jq (required by lowlighter/metrics)
+      - name: 🦑 Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+      
+      # Skyline 
+      - name: 🐙Skyline
+        if: ${{ success() || failure() }}
+        uses: lowlighter/metrics@latest
+        with:
+          filename: skylin.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          output_action: gist
+          committer_gist: ${{ secrets.WORKFLOW_GIST }}
+          plugin_skyline: yes
+          config_timezone: Asia/Kolkata
