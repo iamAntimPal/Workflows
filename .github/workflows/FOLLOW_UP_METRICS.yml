@@ -38,7 +38,7 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           base: ""
           output_action: gist
-          committer_gist: ${{ secrets.GIST }}
+          committer_gist: ${{ secrets.WORKFLOW_GIST }}
           plugin_followup: yes
           plugin_followup_sections: repositories, user
           plugin_followup_indepth: yes
