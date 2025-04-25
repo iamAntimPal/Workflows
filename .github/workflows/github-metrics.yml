@@ -175,11 +175,13 @@ jobs:
           base: ""
           output_action: gist
           committer_gist: ${{ secrets.WORKFLOW_GIST }}
+          template: repository
+          repo: TechInterviewMaster
           plugin_contributors: yes
-          plugin_contributors_base: main
-          plugin_contributors_head: main
           plugin_contributors_contributions: yes
           config_timezone: Asia/Kolkata
+
+
       # Code
       - name: 🐙Code
         if: ${{ success() || failure() }}

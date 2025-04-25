@@ -1,0 +1,4 @@
+*.yml linguist-detected-language: yaml
+*.py linguist-detected-language: python
+*.yml linguist-detectable-filetype: true
+*.yml linguist-detectable=true
