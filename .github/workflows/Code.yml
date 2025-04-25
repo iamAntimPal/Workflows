@@ -1,10 +1,10 @@
-name: Python Snippet of the Day
+name: Python and C++ Snippet of the Day
 
 on:
   pull_request:
     branches:
-      - main            # ✅ Change this if your default branch is different
-  workflow_dispatch:     # Optional: for manual runs
+      - main
+  workflow_dispatch:
 
 jobs:
   generate-snippet:
@@ -21,5 +21,5 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           base: ""
           plugin_code: yes
-          plugin_code_languages: python, cpp
+          plugin_code_languages: 'python,cpp'    # ✅ Make sure this is a string
           plugin_code_load: 400
