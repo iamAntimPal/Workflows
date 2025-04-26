@@ -150,7 +150,7 @@ jobs:
           # skip any repos you don’t want included:
           plugin_lines_skipped: testing, The-Futurists_Manthan_Frontend
           # limit the breakdown to top 10 repos:
-          plugin_lines_repositories_limit: 50
+          plugin_lines_repositories_limit: 10
           config_timezone: Asia/Kolkata
           
       # 9️⃣ LeetCode 
@@ -198,7 +198,7 @@ jobs:
           plugin_code: yes
           plugin_code_lines: 12
           plugin_code_visibility: public
-          plugin_code_languages: python 
+          plugin_code_languages: python, HTML, javascript, c++ 
 
           
 
