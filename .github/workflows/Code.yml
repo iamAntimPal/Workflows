@@ -1,31 +1,62 @@
-name: Python and C++ Snippet of the Day
-
+# .github/workflows/metrics.yml
+name: Code
 on:
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+      pull_request:
+        branches:
+          - main            # ✅ Change this if your default branch is different
+      workflow_dispatch:
+  # Daily at 16:00 UTC
+  # schedule:
+  #   - cron: "0 0 * * *"
+  #   - cron: "0 10 * * *"
+  #   - cron: "0 16 * * *"
+  #   - cron: "0 22 * * *"
+  # Manual trigger from the Actions tab
+  
+
+permissions:
+  contents: write     # to push updates / create PRs
+  actions: read       # to run actions
 
 jobs:
-  generate-snippet:
+  metrics:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      # 1️⃣ Checkout your profile repo
+      - name: 🦑 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
-      # Add step to install dependencies
-      - name: Install Missing Dependencies
+      # 2️⃣ Install jq (required by lowlighter/metrics)
+      - name: 🦑 Install jq
         run: |
           sudo apt-get update
-          sudo apt-get install -y docker.io jq
+          sudo apt-get install -y jq
 
-      - name: Generate Code Snippet Metrics
+      # Code
+      - name: 🐙Code
+        if: ${{ success() || failure() }}
         uses: lowlighter/metrics@latest
         with:
-          filename: metrics.plugin.code.svg
+          filename: code.svg
           token: ${{ secrets.METRICS_TOKEN }}
           base: ""
+          output_action: gist
+          committer_gist: ${{ secrets.WORKFLOW_GIST }}
           plugin_code: yes
-          plugin_code_languages: 'python,cpp'    # ✅ Make sure this is a string
-          plugin_code_load: 400
+          plugin_code_lines: 12
+          plugin_code_visibility: public
+          plugin_code_languages: python 
+
+
+      # 9️⃣ Commit & push all SVG updates to a PR
+      - name: 🦑 Commit & Create PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          branch: metrics-update
+          title: "chore: update all metrics SVGs"
+          body: "Auto-generated metrics via lowlighter/metrics"
