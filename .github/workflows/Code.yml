@@ -14,6 +14,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      # Add step to install dependencies
+      - name: Install Missing Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io jq
+
       - name: Generate Code Snippet Metrics
         uses: lowlighter/metrics@latest
         with:
