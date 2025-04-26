@@ -1,22 +1,19 @@
-# .github/workflows/metrics.yml
 name: Code
+
 on:
-      pull_request:
-        branches:
-          - main            # ✅ Change this if your default branch is different
-      workflow_dispatch:
-  # Daily at 16:00 UTC
+  pull_request:
+    branches:
+      - main            # ✅ Change this if your default branch is different
+  workflow_dispatch:
   # schedule:
-  #   - cron: "0 0 * * *"
-  #   - cron: "0 10 * * *"
-  #   - cron: "0 16 * * *"
-  #   - cron: "0 22 * * *"
-  # Manual trigger from the Actions tab
-  
+  #   - cron: "0 0 * * *"    # Every day at 00:00 UTC
+  #   - cron: "0 10 * * *"   # Every day at 10:00 UTC
+  #   - cron: "0 16 * * *"   # Every day at 16:00 UTC
+  #   - cron: "0 22 * * *"   # Every day at 22:00 UTC
 
 permissions:
-  contents: write     # to push updates / create PRs
-  actions: read       # to run actions
+  contents: write     # ✅ To push updates or create PRs
+  actions: read       # ✅ To allow action execution
 
 jobs:
   metrics:
