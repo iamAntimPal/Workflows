@@ -1,0 +1,23 @@
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on new PR
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            👋 Hello @${{ github.actor }},
+
+            Thank you for opening this pull request! 🎉  
+            We appreciate your contribution and will review it soon. 🚀
+
+            If you have any questions or ideas, feel free to share them here.  
+            Meanwhile, please make sure that your PR follows our contribution guidelines!
+
+            Happy Coding! ✨
