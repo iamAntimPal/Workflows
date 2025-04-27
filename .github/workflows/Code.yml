@@ -46,7 +46,7 @@ jobs:
           plugin_code: yes
           plugin_code_lines: 20
           plugin_code_visibility: public
-          plugin_code_days: 50
+          plugin_code_days: 100
           plugin_code_languages: python, javascript, cpp 
 
 
