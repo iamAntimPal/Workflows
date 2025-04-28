@@ -2,7 +2,7 @@
 <!-- 
 ![Github metrics](https://github.com/iamAntimPal/Workflows/blob/main/github-metrics.svg)
 -->
-
+[![Code](https://github.com/iamAntimPal/Workflows/actions/workflows/Code.yml/badge.svg)](https://github.com/iamAntimPal/Workflows/actions/workflows/Code.yml)
 <table>
   <tr>
     <td>Genral</td>
